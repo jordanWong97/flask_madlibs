@@ -11,19 +11,19 @@ debug = DebugToolbarExtension(app)
 
 @app.get('/question')
 def get_input_place():
-    place = request.args.get("place")
-    noun = request.args.get("noun")
-    verb = request.args.get("verb")
-    adjective = request.args.get("adjective")
-    plural_nouns = request.args.get("plural_noun")
+
+    return render_template("questions.html",
+                user_inputs = silly_story.prompts)
+
+@app.get('/story')
+def generate_story():
+    """ generates story """
+
+    result = silly_story.generate(request.args)
+
+    return render_template('results.html',result = result)
 
 
-    return render_template("results.html",
-                place=place,
-                noun = noun,
-                verb = verb,
-                adjective = adjective,
-                plural_nouns = plural_nouns)
 
 
 
